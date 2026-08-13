@@ -64,7 +64,7 @@ matrix-intuition/
 - 图片引用方式：章节在 `learning-guide/weekN/` 下，所以路径写作：
   `![配图说明](../../figures/out/w3d1_transforms.png)`
 - 现有图片清单（`figures/out/`）：
-  - w1d1_number_axis.png、w1d4_vector_add.png、w1d5_color_vectors.png
+  - w1d1_number_axis.png、w1d4_vector_add.png、w1d4_vector_scale.png、w1d5_color_vectors.png
   - w2d1_lincomb.png、w2d2_span.png、w2d3_two_bases.png
   - w3d1_transforms.png、w3d3_compose.png
   - w4d1_two_readings.png、w4d2_relative_motion.png、w4d6_pca_intuition.png
@@ -92,7 +92,7 @@ matrix-intuition/
 | 01-数轴与坐标-位置就是地址.md | 数轴=地址；平面坐标 (x,y)=两个地址；刻度、格点；图 w1d1_number_axis.png |
 | 02-从点到箭头-向量是什么.md | 位移箭头；向量的两个要素（方向、长度）；用坐标表示向量；勾股定理算长度（初中已会，衔接）；图 w1d4_vector_add.png |
 | 03-环境搭建-装好工具先见证奇迹.md | python 版本检查、pip install -r requirements.txt、venv（可选）；numpy 简介（为什么用：数表=数组）、matplotlib 简介；跑 `IMPL=reference pytest tests -k w1` 先看全绿（见证终点）；跑 `pytest tests -k w1` 看红（战场现状）；讲清楚 IMPL 环境变量机制 |
-| 04-Day1-用代码画向量-加法与数乘.md | 打开 matrixlab/vec2d.py：make/add/sub/scale/neg/length/from_points 逐个实现（每个都给思路+手算例子）；加法=首尾相接、数乘=伸缩；跑 `pytest tests -k w1` 到绿；图 w1d4_vector_add.png |
+| 04-Day1-用代码画向量-加法与数乘.md | 打开 matrixlab/vec2d.py：make/add/sub/scale/neg/length/from_points 逐个实现（每个都给思路+手算例子）；加法=首尾相接、数乘=伸缩；跑 `pytest tests -k w1` 到绿；图 w1d4_vector_add.png（加法）+ w1d4_vector_scale.png（数乘，单独成图） |
 | 05-Day2-AI联系-把词变成向量.md | 📌 AI 联系：词怎么变成数字——颜色三维向量（红绿蓝）举例：混合=向量加法；one-hot 一句话带过；"embedding 就是给每个词找坐标"；图 w1d5_color_vectors.png；预告 Week 2 的"配方" |
 
 README.md 要求：本周定位（不碰矩阵，把箭头直觉建牢）、目录表（链接到 6 章）、"学完你会得到什么"、常用命令速查。风格照抄 miniloro week1/README.md。
