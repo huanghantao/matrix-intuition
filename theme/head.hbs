@@ -4,7 +4,9 @@ window.MathJax = {
   tex: {
     inlineMath: [['$', '$']],
     displayMath: [['$$', '$$']],
-    processEscapes: true,
+    // 注意：不要开 processEscapes！mdBook 的 Markdown 会把源文件里的
+    // \\\\ 还原成 \\，MathJax 需要原样收到两个反斜杠才能换行；
+    // 开了 processEscapes 会再吃一层，多行公式就挤成一行了。
   },
   options: {
     ignoreHtmlClass: 'no-math',

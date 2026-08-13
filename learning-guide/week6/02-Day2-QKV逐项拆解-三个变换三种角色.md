@@ -53,8 +53,8 @@
 
 $$
 \begin{aligned}
-Q &= X \cdot W_q \\
-K &= X \cdot W_k \\
+Q &= X \cdot W_q \\\\
+K &= X \cdot W_k \\\\
 V &= X \cdot W_v
 \end{aligned}
 $$
@@ -138,8 +138,8 @@ $$
 
 $$
 \begin{aligned}
-\mathrm{scores}  &= Q \cdot K^T & &\text{（点积，Week 5）} \\
-\mathrm{weights} &= \mathrm{softmax}(\mathrm{scores}) & &\text{（百分比，Day 3）} \\
+\mathrm{scores}  &= Q \cdot K^T & &\text{（点积，Week 5）} \\\\
+\mathrm{weights} &= \mathrm{softmax}(\mathrm{scores}) & &\text{（百分比，Day 3）} \\\\
 \mathrm{out}     &= \mathrm{weights} \cdot V & &\text{（线性组合，Week 2）}
 \end{aligned}
 $$

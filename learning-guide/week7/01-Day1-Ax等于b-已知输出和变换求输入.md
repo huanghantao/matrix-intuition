@@ -102,28 +102,28 @@ A 的逆矩阵（Week 4 Day 3 的 formula）是
 
 $$
 A^{-1} = \frac{1}{det}
-\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
+\begin{bmatrix} d & -b \\\\ -c & a \end{bmatrix}
 $$
 
 对这道题 $a=1,\ b=1,\ c=1,\ d=-1$，行列式 $det = ad - bc = 1 \cdot (-1) - 1 \cdot 1 = -2$，所以
 
 $$
 A^{-1} = \left(-\frac{1}{2}\right)
-\begin{bmatrix} -1 & -1 \\ -1 & 1 \end{bmatrix}
+\begin{bmatrix} -1 & -1 \\\\ -1 & 1 \end{bmatrix}
 =
-\begin{bmatrix} 0.5 & 0.5 \\ 0.5 & -0.5 \end{bmatrix}
+\begin{bmatrix} 0.5 & 0.5 \\\\ 0.5 & -0.5 \end{bmatrix}
 $$
 
 于是
 
 $$
 x = A^{-1} b =
-\begin{bmatrix} 0.5 & 0.5 \\ 0.5 & -0.5 \end{bmatrix}
-\begin{bmatrix} 3 \\ 1 \end{bmatrix}
+\begin{bmatrix} 0.5 & 0.5 \\\\ 0.5 & -0.5 \end{bmatrix}
+\begin{bmatrix} 3 \\\\ 1 \end{bmatrix}
 =
-\begin{bmatrix} 0.5 \cdot 3 + 0.5 \cdot 1 \\ 0.5 \cdot 3 - 0.5 \cdot 1 \end{bmatrix}
+\begin{bmatrix} 0.5 \cdot 3 + 0.5 \cdot 1 \\\\ 0.5 \cdot 3 - 0.5 \cdot 1 \end{bmatrix}
 =
-\begin{bmatrix} 2 \\ 1 \end{bmatrix}
+\begin{bmatrix} 2 \\\\ 1 \end{bmatrix}
 $$
 
 得 $x = (2, 1)$。✓
@@ -174,7 +174,7 @@ Week 2 Day 5 你亲手写过 `solve2.solve_2x2`，它的思路是初中那套**�
 
 ## 参考答案
 
-本章没有要写的代码，参考答案见明天 Day 2 的 `reference/gauss.py`。第 1 题你若用第 2 题的逆矩阵公式算，$A^{-1} = \left(-\frac{1}{7}\right)\begin{bmatrix}-1 & -2 \\ -2 & 3\end{bmatrix}$，乘 b=(8,3) 得 (2,1)。
+本章没有要写的代码，参考答案见明天 Day 2 的 `reference/gauss.py`。第 1 题你若用第 2 题的逆矩阵公式算，$A^{-1} = \left(-\frac{1}{7}\right)\begin{bmatrix}-1 & -2 \\\\ -2 & 3\end{bmatrix}$，乘 b=(8,3) 得 (2,1)。
 
 ---
 

@@ -60,7 +60,7 @@ $$
 
 $$
 \begin{aligned}
-q_m &= \text{把查询向量转 } m\cdot\theta \text{ 度} \\
+q_m &= \text{把查询向量转 } m\cdot\theta \text{ 度} \\\\
 k_n &= \text{把键向量转 } n\cdot\theta \text{ 度}
 \end{aligned}
 $$
@@ -69,7 +69,7 @@ $$
 
 $$
 \begin{aligned}
-q_m\cdot k_n &= (\text{把 } q_m \text{ 往回转 } n\cdot\theta) \cdot (\text{把 } k_n \text{ 往回转 } n\cdot\theta) \\
+q_m\cdot k_n &= (\text{把 } q_m \text{ 往回转 } n\cdot\theta) \cdot (\text{把 } k_n \text{ 往回转 } n\cdot\theta) \\\\
              &= (\text{转 } m\cdot\theta \text{ 再回 } n\cdot\theta \text{ 的 } q) \cdot (\text{转 } n\cdot\theta \text{ 再回 } n\cdot\theta \text{ 的 } k\text{，也就是没转的 } k)
 \end{aligned}
 $$

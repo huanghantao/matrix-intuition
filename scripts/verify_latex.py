@@ -38,6 +38,20 @@ def check_file(path: pathlib.Path) -> list:
     text = path.read_text(encoding="utf-8")
     prose = strip_protected(text)
 
+    # 换行反斜杠检查：公式换行在 md 源里必须写 \\\\（四个反斜杠），
+    # 否则 Markdown 吃掉一层后 MathJax 收不到换行，多行公式挤成一行。
+    # 代码围栏外、行尾反斜杠数量 >0 且不是 4 的倍数 → 告警。
+    in_fence = False
+    for lineno, line in enumerate(text.splitlines(), 1):
+        if line.strip().startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        m = re.search(r"(\\+)\s*$", line)
+        if m and len(m.group(1)) % 4 != 0:
+            problems.append(f"  第 {lineno} 行行尾反斜杠数 {len(m.group(1))} 会被 Markdown 吃掉一层：{line.strip()[:60]}")
+
     # $ 成对（$$ 也满足偶数个 $）；行内必须同行闭合
     for lineno, line in enumerate(prose.splitlines(), 1):
         n = line.count("$")

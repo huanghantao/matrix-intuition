@@ -80,7 +80,7 @@ Day 3 还有半句话没在 AI 上落地：**坐标是系数的读法，背后�
 
 $$
 \begin{aligned}
-\text{国王} - \text{男人} &\approx \text{王族属性（一个抽象的语义方向）} \\
+\text{国王} - \text{男人} &\approx \text{王族属性（一个抽象的语义方向）} \\\\
 \text{女王} &\approx \text{女人} + \text{王族属性}
 \end{aligned}
 $$

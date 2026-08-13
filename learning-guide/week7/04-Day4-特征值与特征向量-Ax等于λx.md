@@ -54,7 +54,7 @@ $$
 拿对角矩阵当开胃菜（它最简单）：
 
 $$
-A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}
+A = \begin{bmatrix} 2 & 0 \\\\ 0 & 3 \end{bmatrix}
 $$
 
 - 试 $v = (1, 0)$：$A v = (2 \cdot 1 + 0 \cdot 0, 0 \cdot 1 + 3 \cdot 0) = (2, 0) = 2 \cdot (1, 0)$。方向没变（还在 x 轴上），长度变 2 倍 → **$\lambda = 2$，$v = (1,0)$ 是特征向量**。
