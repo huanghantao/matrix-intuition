@@ -29,7 +29,9 @@ for i, (px, py) in enumerate(path):
                 xytext=(10, 8), color=C_RED, fontsize=11)
 
 ax.scatter([0], [0], color=C_BLUE, s=120, marker="*", zorder=6)
-ax.text(0.15, 0.15, "谷底（最小值）", color=C_BLUE, fontsize=12)
+ax.text(0.25, 0.25, "谷底（最小值）", color=C_BLUE, fontsize=12,
+        bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="none", alpha=0.85),
+        zorder=7)
 ax.set_xlabel("参数 1")
 ax.set_ylabel("参数 2")
 ax.set_aspect("equal", adjustable="box")

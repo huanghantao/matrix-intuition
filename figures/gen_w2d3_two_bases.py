@@ -21,18 +21,24 @@ for ax in (ax1, ax2):
 
 # 左：标准基读数
 axes(ax1, xlim=(-3, 6), ylim=(-3, 5))
-vec(ax1, (0, 0), v, color=C_RED, label=f"v = {tuple(v)}")
+vec(ax1, (0, 0), v, color=C_RED, label=f"v = {tuple(v)}",
+    label_at_tip=True, label_offset=(0.15, 0.1))
 ax1.plot([4, 4], [0, 3], color="#888888", lw=1, ls="--")
 ax1.plot([0, 4], [3, 3], color="#888888", lw=1, ls="--")
-vec(ax1, (0, 0), (1, 0), color="#999999", label="e1")
-vec(ax1, (0, 0), (0, 1), color="#999999", label="e2")
+vec(ax1, (0, 0), (1, 0), color="#999999", label="e1",
+    label_at_tip=True, label_offset=(0.05, -0.35))
+vec(ax1, (0, 0), (0, 1), color="#999999", label="e2",
+    label_at_tip=True, label_offset=(-0.3, 0.05))
 ax1.set_title("标准尺子：读数 (4, 3)\n向右 4 格、向上 3 格", fontsize=12)
 
 # 右：新基读数
 axes(ax2, xlim=(-3, 6), ylim=(-3, 5))
-vec(ax2, (0, 0), v, color=C_RED, label="同一支箭头")
-vec(ax2, (0, 0), b1, color=C_BLUE, label="b1 = (2,1)")
-vec(ax2, (0, 0), b2, color=C_GREEN, label="b2 = (-1,1)")
+vec(ax2, (0, 0), v, color=C_RED, label="同一支箭头",
+    label_at_tip=True, label_offset=(0.1, -0.35))
+vec(ax2, (0, 0), b1, color=C_BLUE, label="b1 = (2,1)",
+    label_at_tip=True, label_offset=(0.15, -0.4))
+vec(ax2, (0, 0), b2, color=C_GREEN, label="b2 = (-1,1)",
+    label_at_tip=True, label_offset=(-0.5, 0.1))
 # 沿新基的分解虚线
 sb1 = [s * b1[0], s * b1[1]]
 tb2 = [t * b2[0], t * b2[1]]

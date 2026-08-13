@@ -24,13 +24,17 @@ for s in range(-6, 7):
                 [p[1] - 4 * b1[1], p[1] + 4 * b1[1]],
                 color="#cccccc", lw=0.6, zorder=1)
 
-vec(ax, (0, 0), b1, color=C_BLUE, label="b1 = (2,1)")
-vec(ax, (0, 0), b2, color=C_GREEN, label="b2 = (-1,1)")
+vec(ax, (0, 0), b1, color=C_BLUE, label="b1 = (2,1)",
+    label_at_tip=True, label_offset=(0.15, -0.35))
+vec(ax, (0, 0), b2, color=C_GREEN, label="b2 = (-1,1)",
+    label_at_tip=True, label_offset=(-0.4, 0.1))
 
 # 示例：2*b1 + 1*b2
 p = 2 * b1 + 1 * b2
 ax.scatter([p[0]], [p[1]], color=C_ORANGE, s=50, zorder=5)
-ax.text(p[0] + 0.3, p[1] + 0.3, "2·b1 + 1·b2", color=C_ORANGE, fontsize=12)
+ax.text(p[0] + 0.3, p[1] - 0.4, "2·b1 + 1·b2", color=C_ORANGE, fontsize=12,
+        bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.85),
+        zorder=6)
 
 ax.set_title("张成：用 b1、b2 伸缩相加，能铺满整个平面\n（网格上每个交叉点都是一个线性组合）", fontsize=13)
 save(fig, "w2d2_span.png")

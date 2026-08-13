@@ -18,17 +18,23 @@ for ax in (ax1, ax2):
 v = (1, 0)
 mid = matvec(R, v)
 fin = matvec(S, mid)
-vec(ax1, (0, 0), v, color=C_GRAY, label="v = (1,0)")
-vec(ax1, (0, 0), mid, color=C_GREEN, label="旋转 45°")
-vec(ax1, (0, 0), fin, color=C_RED, label="再拉伸 ×2")
+vec(ax1, (0, 0), v, color=C_GRAY, label="v = (1,0)",
+    label_at_tip=True, label_offset=(0.1, -0.3))
+vec(ax1, (0, 0), mid, color=C_GREEN, label="旋转 45°",
+    label_at_tip=True, label_offset=(0.12, 0.15))
+vec(ax1, (0, 0), fin, color=C_RED, label="再拉伸 ×2",
+    label_at_tip=True, label_offset=(0.12, -0.25))
 ax1.set_title("先旋转，再拉伸\n(R 后 S：S@R)", fontsize=13)
 
 # 右：先横向拉伸 2 倍，再旋转 45°
 mid2 = matvec(S, v)
 fin2 = matvec(R, mid2)
-vec(ax2, (0, 0), v, color=C_GRAY, label="v = (1,0)")
-vec(ax2, (0, 0), mid2, color=C_BLUE, label="拉伸 ×2")
-vec(ax2, (0, 0), fin2, color=C_RED, label="再旋转 45°")
+vec(ax2, (0, 0), v, color=C_GRAY, label="v = (1,0)",
+    label_at_tip=True, label_offset=(0.1, -0.3))
+vec(ax2, (0, 0), mid2, color=C_BLUE, label="拉伸 ×2",
+    label_at_tip=True, label_offset=(0.12, -0.3))
+vec(ax2, (0, 0), fin2, color=C_RED, label="再旋转 45°",
+    label_at_tip=True, label_offset=(0.05, 0.15))
 ax2.set_title("先拉伸，再旋转\n(S 后 R：R@S)", fontsize=13)
 
 fig.suptitle("Week 3 · 穿袜子再穿鞋 ≠ 穿鞋再穿袜子\n矩阵乘法 A@B = “B 先动，A 后动”", fontsize=15)

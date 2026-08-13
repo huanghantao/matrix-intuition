@@ -22,10 +22,13 @@ for m in range(4):
     v = rotate_2d([1.0, 0.0], m * theta)
     ax1.annotate("", xy=(v[0], v[1]), xytext=(0, 0),
                  arrowprops=dict(arrowstyle="-|>", color=colors[m], lw=2.5))
-    ax1.text(v[0] * 1.22, v[1] * 1.22, f"位置 {m}\n转 {m * theta}°",
-             color=colors[m], fontsize=11, ha="center", va="center")
-ax1.set_xlim(-1.6, 1.6)
-ax1.set_ylim(-1.6, 1.6)
+    # 标签放在单位圆外、沿径向错开，四支箭头不互相压
+    ax1.text(v[0] * 1.55, v[1] * 1.55, f"位置 {m}\n转 {m * theta}°",
+             color=colors[m], fontsize=10, ha="center", va="center",
+             bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="none", alpha=0.85),
+             zorder=6)
+ax1.set_xlim(-2.2, 2.2)
+ax1.set_ylim(-2.2, 2.2)
 ax1.set_title("每个位置转不同的角度（θ=30°）", fontsize=13)
 
 # 右：q_m·k_n 只与 (m-n) 有关

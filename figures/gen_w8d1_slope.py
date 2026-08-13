@@ -26,7 +26,9 @@ ax.plot([x0, x1], [f(x0), f(x1)], color=C_ORANGE, lw=1.5, ls=":",
         label="割线（两个点连起来）")
 
 ax.scatter([x0], [y0], color=C_RED, s=70, zorder=6)
-ax.text(x0 + 0.1, y0 - 0.5, f"在 x={x0} 处：往右走，f 在下降\n导数 < 0 → 该往正方向走，才能下山", fontsize=11)
+ax.text(x0 + 0.1, y0 - 0.5, f"在 x={x0} 处：往右走，f 在下降\n导数 < 0 → 该往正方向走，才能下山", fontsize=11,
+        bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.85),
+        zorder=7)
 ax.set_xlabel("x")
 ax.set_ylabel("f(x)")
 ax.set_title("Week 8 · 导数 = 变化率 = “往哪个方向走函数会变小”", fontsize=13)

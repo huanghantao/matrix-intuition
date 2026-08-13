@@ -33,6 +33,14 @@ ax2.set_xlabel("epoch")
 ax2.set_ylabel("损失（对数刻度）")
 ax2.set_title("损失曲线：一步一步滑下山\n（梯度下降在实时起作用）", fontsize=12)
 ax2.grid(True, color="#dddddd", lw=0.6)
+# 只保留 3 个 10 的幂刻度，避免科学计数法标签挤成一团
+import math
+import matplotlib.ticker as ticker
+ax2.yaxis.set_major_locator(ticker.LogLocator(base=10, numticks=3))
+ax2.yaxis.set_major_formatter(
+    ticker.FuncFormatter(lambda v, _: f"1e{int(round(math.log10(v)))}" if v > 0 else "0")
+)
+ax2.tick_params(axis="y", labelsize=9)
 
 fig.suptitle("Week 8 · 大结业：用 numpy 从零训练的两层网络学会了 XOR", fontsize=15)
 save(fig, "w8d6_decision_boundary.png")

@@ -25,10 +25,14 @@ axes(ax, xlim=(-4, 4), ylim=(-3.5, 4.5))
 
 for w, p in words.items():
     ax.scatter([p[0]], [p[1]], color=C_GRAY, s=60, zorder=5)
-    ax.text(p[0] + 0.12, p[1] + 0.12, w, fontsize=12, color="#444444")
+    ax.text(p[0] + 0.12, p[1] + 0.12, w, fontsize=12, color="#444444",
+            bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.8),
+            zorder=6)
 
 ax.scatter([q[0]], [q[1]], color=C_RED, s=90, zorder=6, marker="*")
-ax.text(q[0] + 0.15, q[1] + 0.15, f"{query}（查询）", color=C_RED, fontsize=12)
+ax.text(q[0] + 0.15, q[1] + 0.15, f"{query}（查询）", color=C_RED, fontsize=12,
+        bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.85),
+        zorder=7)
 
 # 找最近邻
 names = list(words.keys())
@@ -36,14 +40,16 @@ vecs = list(words.values())
 best = names[nearest_index(q, vecs)]
 p = words[best]
 ax.plot([q[0], p[0]], [q[1], p[1]], color=C_ORANGE, lw=2, ls="--")
-ax.text((q[0] + p[0]) / 2 + 0.2, (q[1] + p[1]) / 2,
-        f"cos = {cosine_similarity(q, p):.2f}", color=C_ORANGE, fontsize=11)
+ax.text((q[0] + p[0]) / 2 + 0.2, (q[1] + p[1]) / 2 + 0.35,
+        f"cos = {cosine_similarity(q, p):.2f}", color=C_ORANGE, fontsize=11,
+        bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.85))
 
 # 对照：与"汽车"的夹角大得多
 p2 = words["汽车"]
 ax.plot([q[0], p2[0]], [q[1], p2[1]], color=C_BLUE, lw=1.5, ls=":")
-ax.text((q[0] + p2[0]) / 2 - 1.6, (q[1] + p2[1]) / 2,
-        f"cos = {cosine_similarity(q, p2):.2f}", color=C_BLUE, fontsize=11)
+ax.text((q[0] + p2[0]) / 2 - 1.6, (q[1] + p2[1]) / 2 + 0.3,
+        f"cos = {cosine_similarity(q, p2):.2f}", color=C_BLUE, fontsize=11,
+        bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.85))
 
 ax.set_title(f"Week 5 · “{query}”与“{best}”夹角最小 → 最相似\n相似度不看距离长短，只看方向（夹角）", fontsize=13)
 save(fig, "w5d4_embedding_scatter.png")

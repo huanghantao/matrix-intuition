@@ -25,12 +25,14 @@ for ax, (title, M, lim) in zip(axs, transforms):
     ax.grid(True, color="#dddddd", lw=0.6)
     # 原图（灰）
     ax.fill(*zip(*(house + [house[0]])), color=C_GRAY, alpha=0.25)
-    ax.text(0.5, 1.8, "原图", color=C_GRAY, ha="center", fontsize=11)
+    ax.text(0.5, 1.85, "原图", color=C_GRAY, ha="center", fontsize=11,
+            bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.8))
     # 变换后（蓝）
     new_house = apply_to_points(M, house)
     ax.fill(*zip(*(new_house + [new_house[0]])), color=C_BLUE, alpha=0.35)
-    ax.text(sum(p[0] for p in new_house) / 5, sum(p[1] for p in new_house) / 5 + 0.5,
-            "变换后", color=C_BLUE, ha="center", fontsize=11)
+    ax.text(sum(p[0] for p in new_house) / 5, sum(p[1] for p in new_house) / 5 + 0.55,
+            "变换后", color=C_BLUE, ha="center", fontsize=11,
+            bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.8))
     ax.set_title(title, fontsize=13)
 
 fig.suptitle("Week 3 · 矩阵乘向量 = 对整个图形施加一次变换", fontsize=15)
