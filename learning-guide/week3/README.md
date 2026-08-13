@@ -53,9 +53,6 @@
 ## 🧭 常用命令速查
 
 ```bash
-# 进入项目根目录（写作/跑测试都在这里）
-cd matrix-intuition
-
 # 跑本周全部测试（检验你写的代码）
 pytest tests -k w3
 

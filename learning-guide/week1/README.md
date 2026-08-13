@@ -65,9 +65,6 @@
 ## 🧭 常用命令速查
 
 ```bash
-# 进入仓库根目录（写代码、跑测试都在这里）
-cd matrix-intuition
-
 # 装依赖（numpy + matplotlib + pytest）
 pip install -r requirements.txt
 

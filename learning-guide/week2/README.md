@@ -75,9 +75,6 @@
 ## 🧭 常用命令速查
 
 ```bash
-# 进入项目根目录
-cd /Users/codinghuang/codeDir/study/matrix-intuition
-
 # 见证终点：用参考答案跑本周测试（应该全绿）
 IMPL=reference pytest tests -k w2 -q
 

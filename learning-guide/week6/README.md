@@ -52,9 +52,6 @@
 ## 🧭 常用命令速查
 
 ```bash
-# 进入项目根目录（你的战场 matrixlab/ 和参考答案 reference/ 都在这里）
-cd matrix-intuition
-
 # 看起点：参考答案全绿（见证终点长什么样）
 IMPL=reference pytest tests -k w6 -q
 

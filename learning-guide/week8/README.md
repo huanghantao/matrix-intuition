@@ -59,9 +59,6 @@
 ## 🧭 常用命令速查
 
 ```bash
-# 进入仓库根目录（跑测试都在这里）
-cd matrix-intuition
-
 # Day 1：数值梯度的测试（4 条）
 pytest tests -k w8_grad -q
 

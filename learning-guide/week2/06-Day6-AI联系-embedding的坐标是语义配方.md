@@ -115,7 +115,6 @@ $$
 3. （选做）如果你已经装了 numpy，跑一下下面的玩具，感受"词当向量、加减当配方"：
 
 ```bash
-cd /Users/codinghuang/codeDir/study/matrix-intuition
 python -c "
 import numpy as np
 # 玩具语义轴：(男/女, 王族/平民) 两根刻度

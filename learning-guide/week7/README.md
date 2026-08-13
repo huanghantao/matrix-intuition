@@ -65,9 +65,6 @@
 ## 🧭 常用命令速查
 
 ```bash
-# 进入仓库根目录（写代码、跑测试都在这里）
-cd matrix-intuition
-
 # 看终点：跑参考答案，应该全绿（17 个测试）
 IMPL=reference pytest tests -k w7 -q
 
