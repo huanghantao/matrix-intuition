@@ -2,7 +2,7 @@
 
 > 本章你将：
 > 1. 亲手实现完整的迷你 Attention：`attention_scores` / `attention_weights` / `weighted_sum` / `attention`；
-> 2. 看懂并理解 `attention` 里的 **sqrt(d) 缩放**，以及"为什么除以 √d"；
+> 2. 看懂并理解 `attention` 里的 **sqrt(d) 缩放**，以及"为什么除以 $\sqrt{d}$"；
 > 3. 跑 `pytest tests -k w6_attention` 到全绿；
 > 4. 读懂那张 6 个玩具词的热力图：行和 = 1、对角最大。
 
@@ -14,9 +14,9 @@
 
 | 函数 | 对应公式 | 对应周数 |
 |---|---|---|
-| `attention_scores(Q, K)` | scores = Q·K^T | Week 5 点积 |
-| `attention_weights(scores)` | weights = softmax(逐行) | Day 3 |
-| `weighted_sum(weights, values)` | out = Σ w·V | Week 2 线性组合 |
+| `attention_scores(Q, K)` | $\mathrm{scores} = Q\cdot K^T$ | Week 5 点积 |
+| `attention_weights(scores)` | $\mathrm{weights} = \mathrm{softmax}(\mathrm{scores})$（逐行） | Day 3 |
+| `weighted_sum(weights, values)` | $\mathrm{out} = \sum_j w_j\cdot V_j$ | Week 2 线性组合 |
 | `attention(Q, K, V, scale)` | 三步串联 + 缩放 | 综合 |
 
 `softmax` 昨天已经写好了，今天用到它。我们按"从下到上"的顺序实现：先把三个零件函数写出来，再拼成 `attention`。
@@ -63,7 +63,7 @@ def attention_weights(scores: list) -> list:
 
 ## 4.3 weighted_sum：线性组合
 
-公式第三步 `out = Σ_j w[j]·V[j]`。参数 `values` 是若干词向量（每个是 list），`weights` 是一行权重：
+公式第三步 $\mathrm{out} = \sum_j w_j \cdot V_j$。参数 `values` 是若干词向量（每个是 list），`weights` 是一行权重：
 
 ```python
 def weighted_sum(weights: list, values: list) -> list:
@@ -75,11 +75,11 @@ def weighted_sum(weights: list, values: list) -> list:
     return result
 ```
 
-外层循环把每个词向量 `v` 按权重 `w` 伸缩后累加进 `result`——每一维都是所有词的"该维分量 × 权重"的和。这正是 Week 2 的"伸缩再相加"：**权重是配方，V 是原料，结果是一杯调好的新向量。**
+外层循环把每个词向量 `v` 按权重 `w` 伸缩后累加进 `result`——每一维都是所有词的"该维分量 $\times$ 权重"的和。这正是 Week 2 的"伸缩再相加"：**权重是配方，V 是原料，结果是一杯调好的新向量。**
 
 ---
 
-## 4.4 attention：三步串联 + sqrt(d) 缩放
+## 4.4 attention：三步串联 + $\sqrt{d}$ 缩放
 
 最后拼起来。但这里多了一个昨天没细讲的细节——**缩放**：
 
@@ -93,19 +93,19 @@ def attention(Q: list, K: list, V: list, scale: float = None) -> list:
     return [weighted_sum(w, V) for w in weights]        # ④ 加权求和
 ```
 
-### 为什么除以 sqrt(d)？
+### 为什么除以 $\sqrt{d}$？
 
 这是论文里著名的"缩放点积注意力"里的那个"缩放"。直觉是这样的：
 
-- 点积 = 各维分量乘积之和。维度 d 越大，这一长串加出来的数**天然就越大**（每多一维，都可能再贡献一截）；
+- 点积 = 各维分量乘积之和。维度 $d$ 越大，这一长串加出来的数**天然就越大**（每多一维，都可能再贡献一截）；
 - 分数一大，过了 softmax 的指数层，差距会被**过度放大**，权重几乎全压到最高分的那个词上、其余趋近 0——注意力就"太尖"了；
 - 除以 `sqrt(d)`（d 的平方根）能把分数大致"压回正常量级"，让权重分布温和、不至于退化。
 
-> 💡 你可能会问：为什么是 √d 而不是 d？
+> 💡 你可能会问：为什么是 $\sqrt{d}$ 而不是 $d$？
 >
-> 这是统计学里的方差归一化结果（点积的波动随 d 的平方根增长，除 √d 正好抵消）。你不需要追究推导，只要记住两个要点：①这是**缩放**，让分数别随维度膨胀；②默认值是 `sqrt(d)`，公式里写作"除以 √d"。测试里 `test_attention_full` 用的就是默认 `sqrt(2)`。
+> 这是统计学里的方差归一化结果（点积的波动随 $d$ 的平方根增长，除 $\sqrt{d}$ 正好抵消）。你不需要追究推导，只要记住两个要点：①这是**缩放**，让分数别随维度膨胀；②默认值是 `sqrt(d)`，公式里写作"除以 $\sqrt{d}$"。测试里 `test_attention_full` 用的就是默认 `sqrt(2)`。
 
-> 📌 划重点：`attention` = 点积 → **除以 sqrt(d)** → softmax → 加权求和。缩放系数默认 `sqrt(d)`，是防止维度大了分数爆炸、权重过尖。
+> 📌 划重点：`attention` = 点积 $\to$ **除以 $\sqrt{d}$** $\to$ softmax $\to$ 加权求和。缩放系数默认 `sqrt(d)`，是防止维度大了分数爆炸、权重过尖。
 
 ---
 
@@ -132,7 +132,7 @@ pytest tests -k w6_attention -q
 |---|---|
 | `test_attention_scores_are_dot_products` | scores 的每个格子是不是真的等于点积 |
 | `test_attention_weights_rows_sum_to_one` | 每行权重和是否 = 1 |
-| `test_weighted_sum_is_linear_combination` | 加权求和是不是线性组合（权重 [0.25,0.75] → [0.5,1.5]） |
+| `test_weighted_sum_is_linear_combination` | 加权求和是不是线性组合（权重 $[0.25,0.75] \to [0.5,1.5]$） |
 | `test_attention_full` | 完整 attention 的数值（默认 sqrt(2) 缩放） |
 | `test_attention_ignores_scale_flag` | V 全相同时，不管权重如何，输出恒等于那个 V |
 
@@ -148,7 +148,7 @@ pytest tests -k w6_attention -q
 
 1. **对角线最亮**：一个词和自己做点积（自己点自己 = 长度的平方）天然最大，所以 "我"看"我"、"爱"看"爱"…都是该行最亮的那格。这就是 Day 1 说的"随机词向量下，每个词最关注自己"。
 2. **每行和 = 1**：右图把第 1 行加一下（用右图每格的数字），恰好等于 1.00；每一行都如此。这是 softmax 的功劳。
-3. **行 ≠ 列**：第 i 行是该词"看别人"的方案，第 j 列是该词"被别人看"的关注度。由于分数是点积、而 Q·K 在这个玩具里就是 X·X（没做 QKV 变换），分数矩阵是对称的（scores[i][j] == scores[j][i]），所以左右两图沿对角线对称。
+3. **行 $\neq$ 列**：第 $i$ 行是该词"看别人"的方案，第 $j$ 列是该词"被别人看"的关注度。由于分数是点积、而 $Q\cdot K$ 在这个玩具里就是 $X\cdot X$（没做 QKV 变换），分数矩阵是对称的（`scores[i][j] == scores[j][i]`），所以左右两图沿对角线对称。
 
 > 💡 你可能会问：既然是随机向量，为什么还能"对角大"？
 >
@@ -170,14 +170,14 @@ V = [[2, 0], [0, 2]]
 print(attention(Q, K, V))   # 默认 scale=sqrt(2)
 ```
 
-这个例子正是 `test_attention_full` 用的：Q 只有一个查询 [1,0]，它和 K[0]=[1,0] 的点积是 1、和 K[1]=[0,1] 的点积是 0，所以分数 [1,0] 缩放后大头给了 V[0]=[2,0]，输出接近 [2,0]（略偏向 [2,0]，因为 softmax 后第二个也有点权重）。跑一下，看输出是不是靠近 `[[2, 0]]`。
+这个例子正是 `test_attention_full` 用的：Q 只有一个查询 $[1,0]$，它和 $K[0]=[1,0]$ 的点积是 $1$、和 $K[1]=[0,1]$ 的点积是 $0$，所以分数 $[1,0]$ 缩放后大头给了 $V[0]=[2,0]$，输出接近 $[2,0]$（略偏向 $[2,0]$，因为 softmax 后第二个也有点权重）。跑一下，看输出是不是靠近 `[[2, 0]]`。
 
 ---
 
 ## 4.8 本章小结
 
 - ✅ 三个零件函数一一对应公式三步：scores=点积、weights=softmax 逐行、weighted_sum=线性组合。
-- ✅ `attention` 把它们串起来，并在 softmax 前**除以 sqrt(d)** 缩放，默认 scale=sqrt(d)。
+- ✅ `attention` 把它们串起来，并在 softmax 前**除以 $\sqrt{d}$** 缩放，默认 `scale=sqrt(d)`。
 - ✅ 跑 `pytest tests -k w6_attention` 到 9 个全绿。
 - ✅ 热力图三要点：对角最亮（自相似最高）、每行和 = 1（softmax）、分数矩阵对称（本例没做 QKV 变换）。
 
@@ -186,8 +186,8 @@ print(attention(Q, K, V))   # 默认 scale=sqrt(2)
 ## 动手练习
 
 1. **代码**：实现 `matrixlab/attention.py` 的四个函数，跑 `pytest tests -k w6_attention -q` 全绿。
-2. **纸面验证缩放**：d=4 时 scale 默认是多少？如果把 `attention(Q,K,V, scale=1)` 传入 scale=1，和不传有何区别？（答案见提示。）
-3. **读图**：回到 4.6 的热力图右半，挑"吃"那一行，指出它给"苹果"的权重，并验证这一行全加起来 ≈ 1。
+2. **纸面验证缩放**：$d=4$ 时 scale 默认是多少？如果把 `attention(Q,K,V, scale=1)` 传入 scale=1，和不传有何区别？（答案见提示。）
+3. **读图**：回到 4.6 的热力图右半，挑"吃"那一行，指出它给"苹果"的权重，并验证这一行全加起来 $\approx 1$。
 
 ## 参考答案
 
@@ -201,7 +201,7 @@ print(attention(Q, K, V))   # 默认 scale=sqrt(2)
 
 ## 📌 AI 联系
 
-你现在拥有的是一个**功能完整、可逐行讲解**的单头注意力。真实的 Transformer 里，这一步（点积→缩放→softmax→加权求和）被重复成千上万次：每一层、每一个头、每一个位置都做一遍。你手里这 30 行，就是那庞然大物最小的、可运行的"细胞"。
+你现在拥有的是一个**功能完整、可逐行讲解**的单头注意力。真实的 Transformer 里，这一步（点积 $\to$ 缩放 $\to$ softmax $\to$ 加权求和）被重复成千上万次：每一层、每一个头、每一个位置都做一遍。你手里这 30 行，就是那庞然大物最小的、可运行的"细胞"。
 
 ---
 

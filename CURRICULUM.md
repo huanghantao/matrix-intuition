@@ -51,7 +51,7 @@ matrix-intuition/
    - `> ⚠️ 易踩坑：`——常见错误；
    - `> 📌 划重点：`——一句话总结本节。
 5. **不许要求读者证明任何东西。** 只建立直觉；出现"证明留给有兴趣的读者"即可。
-6. **数学公式用纯文本/Unicode**（×、·、²、√、Σ、λ、θ、ᵀ 可用"^T"），**不用 LaTeX `$...$`**（mdBook 未配 MathJax）。
+6. **数学公式用 LaTeX**（mdBook 已启用 MathJax 3，`theme/head.hbs`）：行内 `$...$`、独立行 `$$...$$`；等号对齐用 `$$ \begin{aligned} ... \end{aligned} $$`；矩阵用 `\begin{bmatrix}`；中文操作数用 `\text{...}` 包裹。**代码块（```python/```bash/命令输出）与行内代码中的内容绝不放 `$`。** 常用映射：×→`\times`、·→`\cdot`、≈→`\approx`、≠→`\neq`、→→`\to`、√→`\sqrt{}`、分数→`\frac{}{}`、下标 x₁→`x_1`、上标 x²→`x^2`、转置→`^T`。可用 `python scripts/verify_latex.py` 检查全仓库规范。
 7. **每章结尾固定小节**：
    - `## 动手练习`：1-3 个练习（写 `matrixlab/xxx.py` 里的函数 + 跑测试命令）；
    - `## 参考答案`：一句话指向 `reference/` 同名文件，提示"卡住 20 分钟再看"；

@@ -25,7 +25,7 @@
 | Day 2 | [损失函数——用数衡量"错得多离谱"](./02-Day2-损失函数-用数衡量错得多离谱.md) | `nn.mse_loss` + `nn.TwoLayerNet.loss`：均方误差 |
 | Day 3 | [前向传播——复合变换的流水线](./03-Day3-前向传播-复合变换的流水线.md) | `nn.relu`、`TwoLayerNet.__init__`、`forward` |
 | Day 4 | [反向传播直觉——变化如何传回去](./04-Day4-反向传播直觉-变化如何传回去.md) | `TwoLayerNet.backward`：链式法则把所有梯度算出来 |
-| Day 5 | [梯度下降——一步一步滑下山](./05-Day5-梯度下降-一步一步滑下山.md) | `sgd_step`、`train`：参数 -= 学习率 × 梯度 |
+| Day 5 | [梯度下降——一步一步滑下山](./05-Day5-梯度下降-一步一步滑下山.md) | `sgd_step`、`train`：$\text{参数} \leftarrow \text{参数} - \text{学习率} \times \text{梯度}$ |
 | Day 6 | [大结业——numpy 训练两层网络（XOR 分类）](./06-Day6-大结业-numpy训练两层网络.md) | `xor_dataset` + 整网训练到四类全分对 |
 | Day 7 | [结业总结——回望矩阵直觉地图](./07-Day7-结业总结-回望矩阵直觉地图.md) | （无新代码）回望 8 周，验收三个结业目标 |
 
