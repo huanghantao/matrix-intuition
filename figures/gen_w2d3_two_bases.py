@@ -46,5 +46,6 @@ ax2.plot([sb1[0], v[0]], [sb1[1], v[1]], color="#888888", lw=1, ls="--")
 ax2.plot([tb2[0], v[0]], [tb2[1], v[1]], color="#888888", lw=1, ls="--")
 ax2.set_title(f"新尺子（b1, b2）：读数 ({s_frac}, {t_frac})\n沿 b1 走 {s_frac} 格、沿 b2 走 {t_frac} 格", fontsize=12)
 
-fig.suptitle("Week 2 · 向量不变，尺子变了，读数就变了", fontsize=15)
+fig.suptitle("Week 2 · 向量不变，尺子变了，读数就变了", fontsize=15, y=0.99)
+fig.subplots_adjust(top=0.80, wspace=0.25)
 save(fig, "w2d3_two_bases.png")

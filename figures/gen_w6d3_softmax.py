@@ -34,5 +34,6 @@ for b, w in zip(bars2, weights):
 ax2.text(0.98, 0.93, "0.01 + 0.05 + 0.94 = 1.00", transform=ax2.transAxes,
          fontsize=12, color="#333333", ha="right", va="top")
 
-fig.suptitle("Week 6 · softmax：分数最大的分到几乎全部注意力", fontsize=15)
+fig.suptitle("Week 6 · softmax：分数最大的分到几乎全部注意力", fontsize=15, y=0.99)
+fig.subplots_adjust(top=0.82, wspace=0.28)
 save(fig, "w6d3_softmax.png")

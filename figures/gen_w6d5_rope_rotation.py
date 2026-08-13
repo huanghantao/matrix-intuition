@@ -51,5 +51,7 @@ for d, s in zip(diffs, scores):
         ax2.annotate(f"{s:.2f}", (d, s), textcoords="offset points",
                      xytext=(0, 10), ha="center", fontsize=10)
 
-fig.suptitle("Week 6 · RoPE：用旋转矩阵给词排队，位置信息藏进夹角里", fontsize=15)
+fig.suptitle("Week 6 · RoPE：用旋转矩阵给词排队，位置信息藏进夹角里",
+             fontsize=15, y=0.99)
+fig.subplots_adjust(top=0.84, wspace=0.28)
 save(fig, "w6d5_rope_rotation.png")

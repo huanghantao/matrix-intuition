@@ -35,5 +35,6 @@ for ax, (title, M, lim) in zip(axs, transforms):
             bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.8))
     ax.set_title(title, fontsize=13)
 
-fig.suptitle("Week 3 · 矩阵乘向量 = 对整个图形施加一次变换", fontsize=15)
+fig.suptitle("Week 3 · 矩阵乘向量 = 对整个图形施加一次变换", fontsize=15, y=0.99)
+fig.subplots_adjust(top=0.80, wspace=0.25)
 save(fig, "w3d1_transforms.png")

@@ -37,5 +37,6 @@ vec(ax2, (0, 0), fin2, color=C_RED, label="再旋转 45°",
     label_at_tip=True, label_offset=(0.05, 0.15))
 ax2.set_title("先拉伸，再旋转\n(S 后 R：R@S)", fontsize=13)
 
-fig.suptitle("Week 3 · 穿袜子再穿鞋 ≠ 穿鞋再穿袜子\n矩阵乘法 A@B = “B 先动，A 后动”", fontsize=15)
+fig.suptitle("Week 3 · 穿袜子再穿鞋 ≠ 穿鞋再穿袜子\n矩阵乘法 A@B = “B 先动，A 后动”", fontsize=15, y=0.99)
+fig.subplots_adjust(top=0.78, wspace=0.22)
 save(fig, "w3d3_compose.png")

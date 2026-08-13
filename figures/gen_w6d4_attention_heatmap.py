@@ -36,5 +36,6 @@ for i in range(len(words)):
         ax2.text(j, i, f"{weights[i][j]:.2f}", ha="center", va="center",
                  fontsize=9, color="white" if weights[i][j] > 0.5 else "#333333")
 
-fig.suptitle("Week 6 · 注意力矩阵：第 i 行 = 第 i 个词“看”整句话的分配方案", fontsize=15)
+fig.suptitle("Week 6 · 注意力矩阵：第 i 行 = 第 i 个词“看”整句话的分配方案", fontsize=15, y=0.99)
+fig.subplots_adjust(top=0.82, wspace=0.28)
 save(fig, "w6d4_attention_heatmap.png")

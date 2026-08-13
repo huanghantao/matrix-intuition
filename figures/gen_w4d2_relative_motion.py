@@ -41,5 +41,6 @@ ax2.text(2.7, 1.4, "新尺子读数 = (2,3)\n（x 单位缩到 1/2，y 缩到 1/
          zorder=6)
 ax2.set_title("方式二：尺子动\n刻度变细，点的读数自然变成 (2,3)", fontsize=13)
 
-fig.suptitle("Week 4 · 运动是相对的：变换对象 等价于 变换坐标系", fontsize=15)
+fig.suptitle("Week 4 · 运动是相对的：变换对象 等价于 变换坐标系", fontsize=15, y=0.99)
+fig.subplots_adjust(top=0.80, wspace=0.25)
 save(fig, "w4d2_relative_motion.png")

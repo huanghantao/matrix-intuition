@@ -35,5 +35,6 @@ point(ax2, (2, 3), color=C_RED, label="新尺子读数 (1,1)\n= 标准读数 (2,
       label_offset=(0.3, 0.3))
 ax2.set_title("读法 2：坐标系\nM 的列向量 = 两根新坐标轴", fontsize=13)
 
-fig.suptitle("Week 4 · 变换点，还是变换尺子？—— 结果一样", fontsize=15)
+fig.suptitle("Week 4 · 变换点，还是变换尺子？—— 结果一样", fontsize=15, y=0.99)
+fig.subplots_adjust(top=0.80, wspace=0.22)
 save(fig, "w4d1_two_readings.png")

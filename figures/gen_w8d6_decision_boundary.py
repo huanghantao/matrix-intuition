@@ -42,5 +42,6 @@ ax2.yaxis.set_major_formatter(
 )
 ax2.tick_params(axis="y", labelsize=9)
 
-fig.suptitle("Week 8 · 大结业：用 numpy 从零训练的两层网络学会了 XOR", fontsize=15)
+fig.suptitle("Week 8 · 大结业：用 numpy 从零训练的两层网络学会了 XOR", fontsize=15, y=0.99)
+fig.subplots_adjust(top=0.80, wspace=0.3)
 save(fig, "w8d6_decision_boundary.png")
