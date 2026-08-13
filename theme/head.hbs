@@ -1,0 +1,17 @@
+<!-- 自定义 HTML head：加载 MathJax 3，启用标准 LaTeX 分隔符 $...$ 与 $$...$$ -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$']],
+    displayMath: [['$$', '$$']],
+    processEscapes: true,
+  },
+  options: {
+    ignoreHtmlClass: 'no-math',
+  },
+  svg: {
+    fontCache: 'global',
+  },
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
