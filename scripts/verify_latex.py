@@ -64,6 +64,21 @@ def check_file(path: pathlib.Path) -> list:
     if re.search(r"[┌┐└┘│]", prose):
         problems.append("  残留制表符矩阵边框（┌┐└┘│）")
 
+    # 单反斜杠 + ASCII 标点（\; \, \: \| \{ \} \! \~）：mdBook 的 Markdown 解析器
+    # 会把它们当转义符吃掉标点前的反斜杠，MathJax 收到的公式已被破坏
+    # （\| → | 范数变单竖线；\, → , 冒出多余逗号；\{ → { 集合括号消失）。
+    # 安全写法：\, \; → "\ "（反斜杠空格）；\| → \Vert；\{ \} → \lbrace \rbrace。
+    eaten = sorted(set(re.findall(r"(?<!\\)\\[;,:|{}!~]", prose)))
+    if eaten:
+        problems.append(
+            f"  会被 Markdown 吃掉反斜杠的写法：{' '.join(eaten)}"
+            "（间距请用 \\ ，范数请用 \\Vert，集合括号请用 \\lbrace \\rbrace）")
+
+    # }_{ ：下划线紧跟在标点 } 后面会被 Markdown 当成强调（渲染出 <em>），
+    # 必须转义成 }\_{。
+    if "}_{" in prose:
+        problems.append("  出现 }_{：会被 Markdown 当成下划线强调，请写 }\\_{")
+
     # Unicode 数学字符残留
     leftover = sorted({c for c in prose if c in BANNED})
     if leftover:
