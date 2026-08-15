@@ -109,8 +109,7 @@ $$
 
 $$
 A^{-1} = \left(-\frac{1}{2}\right)
-\begin{bmatrix} -1 & -1 \\\\ -1 & 1 \end{bmatrix}
-=
+\begin{bmatrix} -1 & -1 \\\\ -1 & 1 \end{bmatrix} =
 \begin{bmatrix} 0.5 & 0.5 \\\\ 0.5 & -0.5 \end{bmatrix}
 $$
 
@@ -119,10 +118,8 @@ $$
 $$
 x = A^{-1} b =
 \begin{bmatrix} 0.5 & 0.5 \\\\ 0.5 & -0.5 \end{bmatrix}
-\begin{bmatrix} 3 \\\\ 1 \end{bmatrix}
-=
-\begin{bmatrix} 0.5 \cdot 3 + 0.5 \cdot 1 \\\\ 0.5 \cdot 3 - 0.5 \cdot 1 \end{bmatrix}
-=
+\begin{bmatrix} 3 \\\\ 1 \end{bmatrix} =
+\begin{bmatrix} 0.5 \cdot 3 + 0.5 \cdot 1 \\\\ 0.5 \cdot 3 - 0.5 \cdot 1 \end{bmatrix} =
 \begin{bmatrix} 2 \\\\ 1 \end{bmatrix}
 $$
 
