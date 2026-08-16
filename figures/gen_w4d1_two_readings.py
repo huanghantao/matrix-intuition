@@ -31,8 +31,11 @@ vec(ax2, (0, 0), (M[0][1], M[1][1]), color=C_PURPLE,
 for s in (1, 2):
     ax2.plot([s * 2, s * 2], [0, 6], color="#c8b5e0", lw=0.8, ls="--")
     ax2.plot([0, 6], [s * 3, s * 3], color="#c8b5e0", lw=0.8, ls="--")
-point(ax2, (2, 3), color=C_RED, label="新尺子读数 (1,1)\n= 标准读数 (2,3)",
-      label_offset=(0.3, 0.3))
+# 红点 = 新尺子下读数为 (1,1) 的那个点；红箭头 = 它在标准尺子下的读数 (2,3)，
+# 与左图的 Mv 是同一支箭头 —— 直观呈现"结果一样"
+vec(ax2, (0, 0), (2, 3), color=C_RED, label="新尺子读数 (1,1)\n= 标准读数 (2,3)",
+    label_at_tip=True, label_offset=(0.25, -0.45))
+point(ax2, (2, 3), color=C_RED)
 ax2.set_title("读法 2：坐标系\nM 的列向量 = 两根新坐标轴", fontsize=13)
 
 fig.suptitle("Week 4 · 变换点，还是变换尺子？—— 结果一样", fontsize=15, y=0.99)
