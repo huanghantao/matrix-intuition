@@ -22,8 +22,9 @@ ax1.set_title("方式一：点动\n把 (1,1) 挪到 (2,3)", fontsize=13)
 # 孟岩原例：点物理上还在 (1,1)，但新刻度把"1"标成"2"、"3"，
 # 于是同一个点的读数从 (1,1) 变成 (2,3)。
 axes(ax2, xlim=(-0.5, 5), ylim=(-0.5, 5))
+# 标签放在点的右下方，避开上方的新尺子读数说明框
 point(ax2, (1, 1), color=C_RED, label="点没动，物理位置还是 (1,1)",
-      label_offset=(0.35, 0.35))
+      label_offset=(0.2, -0.55))
 # 旧刻度（标准尺）淡色保留
 for k in range(1, 5):
     ax2.plot([k, k], [-0.06, 0.06], color="#bbbbbb", lw=1)
@@ -33,10 +34,13 @@ ax2.scatter([1], [0], color="#888888", s=40, zorder=6)
 ax2.text(1, -0.45, "新刻度“2”", color="#888888", ha="center", fontsize=11,
          bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="none", alpha=0.85))
 ax2.scatter([0], [1], color="#888888", s=40, zorder=6)
-ax2.text(-0.75, 1, "新刻度“3”", color="#888888", va="center", fontsize=11,
+# 标签放到刻度点上方，不再把点盖住
+ax2.text(0, 1.35, "新刻度“3”", color="#888888", ha="center", va="bottom",
+         fontsize=11, zorder=6,
          bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="none", alpha=0.85))
-ax2.text(2.7, 1.4, "新尺子读数 = (2,3)\n（x 单位缩到 1/2，y 缩到 1/3）",
-         color=C_RED, fontsize=11,
+# 说明框挪到右图上半部分的空白区，不和点的标签重叠
+ax2.text(2.25, 3.6, "新尺子读数 = (2,3)\n（x 单位缩到 1/2，y 缩到 1/3）",
+         color=C_RED, fontsize=11, ha="center", va="center",
          bbox=dict(boxstyle="round,pad=0.25", fc="white", ec="none", alpha=0.85),
          zorder=6)
 ax2.set_title("方式二：尺子动\n刻度变细，点的读数自然变成 (2,3)", fontsize=13)
