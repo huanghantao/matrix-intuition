@@ -77,6 +77,8 @@ def weighted_sum(weights: list, values: list) -> list:
 
 外层循环把每个词向量 `v` 按权重 `w` 伸缩后累加进 `result`——每一维都是所有词的"该维分量 $\times$ 权重"的和。这正是 Week 2 的"伸缩再相加"：**权重是配方，V 是原料，结果是一杯调好的新向量。**
 
+> 📌 **划重点：** `weighted_sum` 就是"按行切"的代码化身。提前看一眼 4.4 的最后一行 `[weighted_sum(w, V) for w in weights]`——每次取 weights 的**一行** `w`，和**整个** V 配一次，结果按行叠起来。这正是 Week 3 Day 3 §3.3b 说的：$\mathrm{out} = \mathrm{weights}\cdot V$ 按行切开，每行是一次"行向量 $\times$ 矩阵"。公式、几何、代码，三处对上了。
+
 ---
 
 ## 4.4 attention：三步串联 + $\sqrt{d}$ 缩放
