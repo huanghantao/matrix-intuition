@@ -30,9 +30,10 @@ ax2.set_ylabel("权重")
 for b, w in zip(bars2, weights):
     ax2.text(b.get_x() + b.get_width() / 2, b.get_height() + 0.02,
              f"{w:.2f}", ha="center", fontsize=12, color="#333333")
-# 求和说明挪到右上角空白处，避免压住中间 0.94 柱的数值
-ax2.text(0.98, 0.93, "0.01 + 0.05 + 0.94 = 1.00", transform=ax2.transAxes,
-         fontsize=12, color="#333333", ha="right", va="top")
+# 求和说明放在左上角空白处（词 A、词 B 的柱子很矮，上方是空的），
+# 避免压住右侧 0.94 高柱和它的数值标签
+ax2.text(0.03, 0.95, "0.01 + 0.05 + 0.94 = 1.00", transform=ax2.transAxes,
+         fontsize=12, color="#333333", ha="left", va="top")
 
 fig.suptitle("Week 6 · softmax：分数最大的分到几乎全部注意力", fontsize=15, y=0.99)
 fig.subplots_adjust(top=0.82, wspace=0.28)
