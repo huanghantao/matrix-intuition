@@ -21,7 +21,7 @@ fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 im1 = ax1.imshow(scores, cmap="Blues")
 ax1.set_xticks(range(len(words)), words)
 ax1.set_yticks(range(len(words)), words)
-ax1.set_title("亲密度分数 Q·K（未归一化）", fontsize=13)
+ax1.set_title(r"亲密度分数 $Q\cdot K^{\mathsf{T}}$（未归一化）", fontsize=13)
 for i in range(len(words)):
     for j in range(len(words)):
         ax1.text(j, i, f"{scores[i][j]:.2f}", ha="center", va="center",
