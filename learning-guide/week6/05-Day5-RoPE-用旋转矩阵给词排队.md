@@ -214,7 +214,7 @@ $$x = [x_0, x_1, x_2, x_3, x_4, x_5, x_6, x_7]$$
 
 ### 5.8.2 第 ② 步：每对配一个频率 $\theta_i = \mathrm{base}^{-2i/d}$
 
-真实 RoPE 不再手写一个 $\theta$，而是用公式给第 $i$ 对算一个：
+真实 RoPE 不再固定写死一个 $\theta$ 让全队共用，而是按公式给第 $i$ 对各算一个：
 
 $$\theta_i = \mathrm{base}^{-2i/d},\qquad \mathrm{base} = 10000$$
 
