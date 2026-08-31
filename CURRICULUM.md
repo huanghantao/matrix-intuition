@@ -28,7 +28,7 @@ matrix-intuition/
 ├── learning-guide/weekN/   ← 你写的东西在这里（教程正文）
 ├── matrixlab/              ← 读者的战场：函数体 raise NotImplementedError("TODO")，读者自己填
 ├── reference/              ← 参考答案：完整实现（写作时以它为准，代码已定稿、已通过测试）
-├── tests/                  ← 测试（已定稿：91 个测试，reference 全绿）
+├── tests/                  ← 测试（已定稿：96 个测试，reference 全绿）
 ├── figures/gen_*.py        ← 生图脚本（已定稿，图片已生成在 figures/out/）
 ├── figures/out/*.png       ← 教程里引用的图片
 └── material/理解矩阵.txt    ← 孟岩原文（转存）
@@ -68,7 +68,7 @@ matrix-intuition/
   - w3d1_transforms.png、w3d3_compose.png
   - w4d1_two_readings.png、w4d2_relative_motion.png、w4d6_pca_intuition.png
   - w5d1_dot_intuition.png、w5d4_embedding_scatter.png
-  - w6d1_attention_problem.png、w6d2_qkv.png、w6d3_softmax.png、w6d4_attention_heatmap.png、w6d5_rope_rotation.png、w6d5_rope_scores.png
+  - w6d1_attention_problem.png、w6d2_qkv.png、w6d3_softmax.png、w6d4_attention_heatmap.png、w6d5_rope_rotation.png、w6d5_rope_scores.png、w6d5_real_rope_pairs.png、w6d5_real_rope_matrix.png、w6d5_real_rope_waves.png、w6d5_freq_trap.png、w6d5_ladder_division.png
   - w7d1_two_lines.png、w7d3_fit_line.png、w7d5_eigen_directions.png
   - w8d1_slope.png、w8d4_chain.png、w8d5_gd_path.png、w8d6_decision_boundary.png、w8d7_map.png
 - **每张图必须至少被一章引用一次**（上表对应章节会用到；写作时确认你的周内图都被引用）。
@@ -149,7 +149,7 @@ README.md 要求：本周定位（不碰矩阵，把箭头直觉建牢）、目�
 | 02-Day2-QKV逐项拆解-三个变换三种角色.md | XWq/XWk/XWv（Week 3 变换）；Q=我在找谁、K=我是谁、V=我装了什么；图 w6d2_qkv.png；公式逐步拆：scores=QK^T、weights=softmax(scores)、out=weights·V |
 | 03-Day3-softmax-把分数变成百分比.md | 为什么需要归一化；指数的作用（放大差距、保证正数）；数值技巧（减最大值）；实现 softmax；图 w6d3_softmax.png |
 | 04-Day4-代码实战-MiniAttention.md | 实现 attention_scores/attention_weights/weighted_sum/attention（含 sqrt(d) 缩放）；逐段讲解；跑 `pytest tests -k w6`（不含 rope 部分也行）；图 w6d4_attention_heatmap.png |
-| 05-Day5-RoPE-用旋转矩阵给词排队.md | **重点章**：attention 天然不知道顺序 → 需要位置；RoPE 思路=位置 m 的词向量转 mθ 度（Week 3 旋转矩阵）；"旋转复合=角度相加 + 点积只与夹角有关（Week 5）"推出 q_m·k_n 只依赖 (m-n)；旋转保长度；实现 rotate_2d/apply_rope_2d/rope_score；跑 `pytest tests -k rope`；真实 RoPE 的"维度两两配对、不同频率"一句话收尾；图 w6d5_rope_rotation.png、w6d5_rope_scores.png |
+| 05-Day5-RoPE-用旋转矩阵给词排队.md | **重点章**：attention 天然不知道顺序 → 需要位置；RoPE 思路=位置 m 的词向量转 mθ 度（Week 3 旋转矩阵）；"旋转复合=角度相加 + 点积只与夹角有关（Week 5）"推出 q_m·k_n 只依赖 (m-n)；旋转保长度；实现 rotate_2d/apply_rope_2d/rope_score；跑 `pytest tests -k rope`；真实 RoPE 全貌：维度两两配对、频率梯子，两个小实验拆解"单一频率为什么不够、梯子为什么长短通吃"；动手实现真实 RoPE（real_frequencies/apply_rope_d/rope_score_d，纯 Python 列表 + 弧度制）；图 w6d5_rope_rotation.png、w6d5_rope_scores.png、w6d5_real_rope_pairs.png、w6d5_real_rope_matrix.png、w6d5_real_rope_waves.png、w6d5_freq_trap.png、w6d5_ladder_division.png |
 | 06-Day6-可视化与大串讲-Attention热力图.md | 回顾五周地图（向量→组合→变换→坐标系→点积→attention）；读热力图；多头的两句话（同一套机制开几个副本）；与 Week 8 预告 |
 
 ### Week 7：方程组、最小二乘与特征值——矩阵的三件"正事"（⭐⭐⭐）
