@@ -38,18 +38,15 @@ A = [x+y 的系数行]  …… 先别管具体数字
 
 我们把上面俩方程换个写法，把未知数 x、y 打包成一支向量 $x = (x, y)$，把两个结果打包成 $b = (3, 1)$，系数打包成矩阵 A：
 
-```
-        ┌        ┐
-A =     │ 1   1  │
-        │ 1  −1  │
-        └        ┘
+$$
+A = \begin{bmatrix} 1 & 1 \\\\ 1 & -1 \end{bmatrix}
+$$
 
-Ax = b  等价于
-        ┌        ┐┌   ┐   ┌   ┐
-        │ 1   1  ││ x │   │ 3 │
-        │ 1  −1  ││ y │ = │ 1 │
-        └        ┘└   ┘   └   ┘
-```
+$Ax = b$ 等价于
+
+$$
+\begin{bmatrix} 1 & 1 \\\\ 1 & -1 \end{bmatrix} \begin{bmatrix} x \\\\ y \end{bmatrix} = \begin{bmatrix} 3 \\\\ 1 \end{bmatrix}
+$$
 
 把它展开，就是 Week 3 学的矩阵乘向量（行 $\times$ 列，对应相乘再相加）：
 
