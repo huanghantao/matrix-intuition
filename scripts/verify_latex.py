@@ -4,7 +4,10 @@
   1. 剥离代码围栏 / 行内代码 / 图片 / 链接文字之后，剩余正文中的 $ 必须成对
      （行内 $...$ 同行闭合；$$ 成对）；
   2. 正文（同上剥离后）不得残留 Unicode 数学字符；
-  3. 正文不得残留制表符矩阵边框。
+  3. 正文不得残留制表符矩阵边框；
+  4. $$ 公式块内不得出现会被 Markdown 当成结构行的内容
+     （孤立的 = / - 行、空行、# / > 开头）——它们会把公式劈断，
+     MathJax 收不到成对的 $$，公式原样漏出。
 
 用法：python scripts/verify_latex.py
 """
@@ -63,6 +66,31 @@ def check_file(path: pathlib.Path) -> list:
     # 制表符矩阵残留
     if re.search(r"[┌┐└┘│]", prose):
         problems.append("  残留制表符矩阵边框（┌┐└┘│）")
+
+    # $$ 公式块内的"Markdown 结构行"检查：mdBook 的 Markdown 解析器不认识
+    # 数学块，按普通文本切分。块内若出现——
+    #   单独一行 = / -   → 被当成 setext 标题下划线，把公式劈成 <h1>+<p>；
+    #   空行            → 段落被拆成两段，$$ 失去配对；
+    #   # 或 > 开头     → 被当成标题 / 引用块，同样劈断公式。
+    # 数学块必须整段落在同一个段落元素里（推荐整条公式写在一行）。
+    in_fence = False
+    in_display = False
+    for lineno, line in enumerate(text.splitlines(), 1):
+        if line.strip().startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        if line.count("$$") % 2 == 1:
+            in_display = not in_display
+            continue
+        if not in_display:
+            continue
+        s = line.strip()
+        if s == "" or re.fullmatch(r"[=-]+", s) or s.startswith("#") or s.startswith(">"):
+            problems.append(
+                f"  第 {lineno} 行在 $$ 公式块内且会被 Markdown 当成结构行（公式被劈断）：{s[:40]!r}"
+            )
 
     # 单反斜杠 + ASCII 标点（\; \, \: \| \{ \} \! \~）：mdBook 的 Markdown 解析器
     # 会把它们当转义符吃掉标点前的反斜杠，MathJax 收到的公式已被破坏
